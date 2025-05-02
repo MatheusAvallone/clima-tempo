@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplicativo de Clima</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <button id="toggleTheme">🌙</button>
+    <div class="container">
+        <h1>🌦️ Clima Agora</h1>
+        <input type="text" id="cityInput" placeholder="Digite a cidade..." />
+        <button onclick="buscarClima()">Ver Clima</button>
+        <div id="loading" class="loading">Carregando...</div>
+        <div id="weatherResult"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

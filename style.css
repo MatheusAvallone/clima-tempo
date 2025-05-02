@@ -1,0 +1,150 @@
+/* Reset geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo e fundo */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #202020, #404040);
+    color: white;
+    text-align: center;
+    padding: 40px;
+    transition: background 0.3s ease;
+}
+
+/* Container central */
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 25px;
+    background: #2c2c3e;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* Input e botão */
+input {
+    padding: 10px;
+    width: 70%;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: crimson;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #e30000;
+}
+
+/* Resultados do clima */
+#weatherResult {
+    margin-top: 25px;
+    font-size: 18px;
+    padding: 20px;
+    background-color: #1f1f2e;
+    border-radius: 12px;
+    box-shadow: inset 0 0 10px #000;
+    animation: fadeIn 0.4s ease;
+}
+
+/* Animação */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cartões de clima */
+.weather-card {
+    background: #333;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.weather-card img {
+    width: 60px;
+    height: 60px;
+}
+
+/* Animação de Carregamento */
+.loading {
+    font-size: 18px;
+    color: crimson;
+    display: none;
+}
+
+/* Tema Claro */
+body.light-theme {
+    background: linear-gradient(to right, #f0f0f0, #e0e0e0);
+    color: #111;
+}
+
+body.light-theme .container {
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #111;
+}
+
+body.light-theme input {
+    background-color: #f9f9f9;
+    color: #111;
+}
+
+body.light-theme button {
+    background-color: #222;
+    color: #fff;
+}
+
+body.light-theme button:hover {
+    background-color: #444;
+}
+
+body.light-theme #weatherResult {
+    background-color: #f0f0f0;
+    color: #111;
+}
+
+body.light-theme #toggleTheme {
+    color: #000;
+}
+
+/* Botão de tema */
+#toggleTheme {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* Ícones de clima */
+.weather-icon {
+    width: 50px;
+    height: 50px;
+}
