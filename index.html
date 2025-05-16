@@ -3,19 +3,98 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aplicativo de Clima</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <meta name="description" content="Aplicativo de previsão do tempo com informações meteorológicas em tempo real" />
+    <title>Clima Agora - Previsão do Tempo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <button id="toggleTheme">🌙</button>
-    <div class="container">
+    <button id="toggleTheme" aria-label="Alternar tema escuro/claro">🌙</button>
+    
+    <main class="container">
         <h1>🌦️ Clima Agora</h1>
-        <input type="text" id="cityInput" placeholder="Digite a cidade..." />
-        <button onclick="buscarClima()">Ver Clima</button>
-        <div id="loading" class="loading">Carregando...</div>
-        <div id="weatherResult"></div>
-    </div>
+        
+        <div class="settings-bar">
+            <button id="toggleUnits" aria-label="Alternar unidades de temperatura">°C</button>
+            <button id="toggleNotifications" aria-label="Ativar notificações">🔔</button>
+        </div>
+
+        <div class="search-container" role="search">
+            <label for="cityInput" class="visually-hidden">Digite o nome da cidade</label>
+            <input 
+                type="text" 
+                id="cityInput" 
+                placeholder="Digite a cidade..." 
+                aria-label="Nome da cidade"
+                autocomplete="off"
+            />
+            <button onclick="buscarClima()" aria-label="Buscar clima">
+                Ver Clima
+            </button>
+            <button id="showMap" aria-label="Selecionar no mapa">🗺️</button>
+        </div>
+
+        <div id="mapContainer" class="map-container hidden">
+            <div id="map"></div>
+            <button class="close-map">✕</button>
+        </div>
+
+        <div id="loading" class="loading" role="status" aria-live="polite">
+            Carregando...
+        </div>
+
+        <div id="weatherResult" role="region" aria-live="polite" aria-label="Resultados do clima"></div>
+        
+        <div id="forecast" class="forecast-container"></div>
+
+        <div class="weather-details hidden" id="weatherDetails">
+            <h3>Informações Detalhadas</h3>
+            <div class="details-grid">
+                <div id="sunTimes" class="detail-card">
+                    <h4>☀️ Ciclo Solar</h4>
+                    <div class="detail-content"></div>
+                </div>
+                <div id="airQuality" class="detail-card">
+                    <h4>🌬️ Qualidade do Ar</h4>
+                    <div class="detail-content"></div>
+                </div>
+                <div id="rainChance" class="detail-card">
+                    <h4>🌧️ Precipitação</h4>
+                    <div class="detail-content"></div>
+                </div>
+                <div id="windDetails" class="detail-card">
+                    <h4>💨 Detalhes do Vento</h4>
+                    <div class="detail-content"></div>
+                </div>
+                <div id="uvIndex" class="detail-card">
+                    <h4>🌞 Índice UV</h4>
+                    <div class="detail-content"></div>
+                </div>
+                <div id="weatherAlerts" class="detail-card">
+                    <h4>⚠️ Alertas</h4>
+                    <div class="detail-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tempChart" class="chart-container"></div>
+
+        <div class="share-buttons">
+            <button onclick="compartilhar('twitter')" aria-label="Compartilhar no Twitter">
+                Twitter
+            </button>
+            <button onclick="compartilhar('whatsapp')" aria-label="Compartilhar no WhatsApp">
+                WhatsApp
+            </button>
+            <button onclick="compartilhar('telegram')" aria-label="Compartilhar no Telegram">
+                Telegram
+            </button>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

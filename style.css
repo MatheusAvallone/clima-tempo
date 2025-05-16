@@ -5,57 +5,103 @@
     box-sizing: border-box;
 }
 
+/* Acessibilidade */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* Corpo e fundo */
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to right, #202020, #404040);
+    background: linear-gradient(135deg, #1e2030, #2d3250);
     color: white;
     text-align: center;
-    padding: 40px;
+    padding: 40px 20px;
+    min-height: 100vh;
     transition: background 0.3s ease;
 }
 
 /* Container central */
 .container {
-    max-width: 400px;
+    max-width: 900px;
     margin: auto;
     padding: 25px;
-    background: #2c2c3e;
+    background: rgba(37, 40, 61, 0.95);
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
     transition: 0.3s ease;
 }
 
 h1 {
+    margin-bottom: 25px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #7eb2ff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Container de busca */
+.search-container {
+    display: flex;
+    gap: 10px;
     margin-bottom: 20px;
-    font-size: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* Input e botão */
 input {
-    padding: 10px;
-    width: 70%;
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 15px;
     border-radius: 8px;
-    border: none;
+    border: 2px solid transparent;
     font-size: 16px;
     outline: none;
-    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+input:focus {
+    border-color: #7eb2ff;
+    box-shadow: 0 0 5px rgba(126, 178, 255, 0.3);
 }
 
 button {
-    padding: 10px 20px;
-    background-color: crimson;
-    color: white;
+    padding: 12px 25px;
+    background-color: #7eb2ff;
+    color: #1e2030;
     border: none;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     font-size: 16px;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background-color: #e30000;
+    background-color: #5c9fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:focus-visible {
+    outline: 3px solid #ff6b6b;
+    outline-offset: 2px;
 }
 
 /* Resultados do clima */
@@ -63,9 +109,7 @@ button:hover {
     margin-top: 25px;
     font-size: 18px;
     padding: 20px;
-    background-color: #1f1f2e;
     border-radius: 12px;
-    box-shadow: inset 0 0 10px #000;
     animation: fadeIn 0.4s ease;
 }
 
@@ -77,63 +121,197 @@ button:hover {
 
 /* Cartões de clima */
 .weather-card {
-    background: #333;
-    border-radius: 15px;
-    padding: 15px;
-    margin: 10px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(51, 51, 51, 0.95), rgba(51, 51, 51, 0.8));
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
-.weather-card img {
-    width: 60px;
-    height: 60px;
+.weather-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+    border-radius: 4px 4px 0 0;
+}
+
+.weather-card .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.weather-card .location-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.weather-card h2 {
+    color: #ff6b6b;
+    font-size: 32px;
+    margin: 0;
+}
+
+.weather-card .main-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+}
+
+.weather-card .temp-container {
+    text-align: center;
+}
+
+.weather-card .main-temp {
+    font-size: 64px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 10px 0;
+}
+
+.weather-card .description {
+    font-size: 24px;
+    color: #ffd93d;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.weather-card .weather-icon {
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.weather-card .weather-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.weather-card .info-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s ease;
+}
+
+.weather-card .info-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.weather-card .info-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.weather-card .info-value {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* Mensagens de erro */
+.error-message {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 4px solid #ff6b6b;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: #ff6b6b;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
 }
 
 /* Animação de Carregamento */
 .loading {
     font-size: 18px;
-    color: crimson;
+    color: #ff6b6b;
     display: none;
+    margin: 15px 0;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
 }
 
 /* Tema Claro */
 body.light-theme {
-    background: linear-gradient(to right, #f0f0f0, #e0e0e0);
-    color: #111;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    color: #333;
 }
 
 body.light-theme .container {
-    background: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    color: #111;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 body.light-theme input {
-    background-color: #f9f9f9;
-    color: #111;
+    background-color: #fff;
+    border: 2px solid #eee;
 }
 
 body.light-theme button {
-    background-color: #222;
-    color: #fff;
+    background-color: #ff6b6b;
 }
 
 body.light-theme button:hover {
-    background-color: #444;
+    background-color: #ff5252;
 }
 
 body.light-theme #weatherResult {
-    background-color: #f0f0f0;
-    color: #111;
+    color: #333;
 }
 
-body.light-theme #toggleTheme {
-    color: #000;
+body.light-theme .weather-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .weather-card .main-temp {
+    color: #333;
+}
+
+body.light-theme .weather-card .weather-info {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .weather-card .info-label {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+body.light-theme .weather-card .description {
+    color: #ff6b6b;
 }
 
 /* Botão de tema */
 #toggleTheme {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     background: none;
@@ -141,10 +319,269 @@ body.light-theme #toggleTheme {
     font-size: 24px;
     cursor: pointer;
     color: #fff;
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+#toggleTheme:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .weather-card .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .weather-card .main-info {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .weather-card .weather-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .weather-card h2 {
+        font-size: 24px;
+    }
+
+    .weather-card .main-temp {
+        font-size: 48px;
+    }
+
+    .forecast-container {
+        grid-template-columns: repeat(2, 1fr);
+        overflow-x: auto;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .weather-card .weather-info {
+        grid-template-columns: 1fr;
+    }
+
+    .forecast-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Ícones de clima */
 .weather-icon {
     width: 50px;
     height: 50px;
+}
+
+/* Configurações gerais */
+.settings-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.settings-bar button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* Container do mapa */
+.map-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    height: 400px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.map-container.hidden {
+    display: none;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.close-map {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+}
+
+/* Previsão do tempo */
+.forecast-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.forecast-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.forecast-card:hover {
+    transform: translateY(-5px);
+}
+
+.forecast-card .date {
+    font-size: 16px;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.forecast-card .temp {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+/* Detalhes do clima */
+.weather-details {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    backdrop-filter: blur(5px);
+}
+
+.weather-details h3 {
+    color: #7eb2ff;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: left;
+    padding-left: 10px;
+    border-left: 4px solid #7eb2ff;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.detail-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.detail-card h4 {
+    color: #7eb2ff;
+    font-size: 18px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-content {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.detail-content p {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-content .value {
+    font-weight: 500;
+    color: #ffd93d;
+}
+
+/* Responsividade para detalhes */
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .weather-details h3 {
+        font-size: 20px;
+    }
+}
+
+/* Gráfico de temperatura */
+.chart-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    height: 300px;
+}
+
+/* Botões de compartilhamento */
+.share-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.share-buttons button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.share-buttons button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
