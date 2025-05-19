@@ -1,0 +1,66 @@
+.search-container {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 15px;
+    border-radius: var(--border-radius-sm);
+    border: 2px solid transparent;
+    font-size: var(--font-size-md);
+    outline: none;
+    transition: all var(--transition-fast);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 5px rgba(126, 178, 255, 0.3);
+}
+
+button {
+    padding: 12px 25px;
+    background-color: var(--color-primary);
+    color: var(--text-dark);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: var(--font-size-md);
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+button:hover {
+    background-color: #5c9fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--color-secondary);
+    outline-offset: 2px;
+}
+
+/* Tema Claro */
+body.light-theme input {
+    background-color: var(--text-light);
+    border: 2px solid #eee;
+}
+
+body.light-theme button {
+    background-color: var(--color-secondary);
+}
+
+body.light-theme button:hover {
+    background-color: #ff5252;
+} 

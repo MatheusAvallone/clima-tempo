@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima Tempo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <button id="toggleTheme" aria-label="Alternar tema">🌓</button>
+    
+    <div class="container">
+        <h1>Clima Tempo</h1>
+        
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Digite o nome da cidade..."
+                aria-label="Buscar cidade"
+            >
+            <button id="searchButton">Buscar</button>
+            <button id="locationButton" aria-label="Usar minha localização">📍</button>
+        </div>
+        
+        <div id="weatherResult"></div>
+
+        <!-- Nova seção para gráfico e detalhes -->
+        <div class="weather-details">
+            <div class="details-header">
+                <h3>Detalhes Meteorológicos</h3>
+                <button id="toggleFavorites" class="favorite-btn" aria-label="Adicionar aos favoritos">⭐</button>
+            </div>
+            
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h4>Pressão Atmosférica</h4>
+                    <div class="detail-content" id="pressure"></div>
+                </div>
+                <div class="detail-card">
+                    <h4>Visibilidade</h4>
+                    <div class="detail-content" id="visibility"></div>
+                </div>
+                <div class="detail-card">
+                    <h4>Nascer do Sol</h4>
+                    <div class="detail-content" id="sunrise"></div>
+                </div>
+                <div class="detail-card">
+                    <h4>Pôr do Sol</h4>
+                    <div class="detail-content" id="sunset"></div>
+                </div>
+                <div class="detail-card">
+                    <h4>Nuvens</h4>
+                    <div class="detail-content" id="clouds"></div>
+                </div>
+                <div class="detail-card">
+                    <h4>Índice UV</h4>
+                    <div class="detail-content" id="uvi"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção do gráfico -->
+        <div class="chart-container">
+            <h3>Variação de Temperatura</h3>
+            <canvas id="temperatureChart"></canvas>
+        </div>
+
+        <!-- Seção de favoritos -->
+        <div class="favorites-section">
+            <h3>Cidades Favoritas</h3>
+            <div id="favoritesList" class="favorites-grid"></div>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html> 

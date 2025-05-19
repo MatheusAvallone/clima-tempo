@@ -1,0 +1,21 @@
+{
+  "name": "clima-tempo",
+  "version": "1.0.0",
+  "description": "Aplicação web para consulta de previsão do tempo em tempo real",
+  "main": "src/js/app.js",
+  "scripts": {
+    "start": "serve src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "clima",
+    "tempo",
+    "weather",
+    "forecast"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+} 
